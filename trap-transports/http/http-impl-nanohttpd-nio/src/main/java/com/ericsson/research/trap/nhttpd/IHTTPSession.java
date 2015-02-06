@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.ericsson.research.trap.nhttpd.NanoHTTPD.Method;
 import com.ericsson.research.trap.nio.Socket;
+import com.ericsson.research.trap.nio.Socket.SocketHandler;
 
 /**
  * Handles one session, i.e. parses the HTTP request and returns the response.
@@ -37,4 +38,6 @@ public interface IHTTPSession
     Socket getSocket();
 
     InputStream getInputStream();
+    
+    void upgrade(SocketHandler handler);
 }

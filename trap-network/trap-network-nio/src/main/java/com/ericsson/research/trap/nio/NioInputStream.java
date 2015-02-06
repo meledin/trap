@@ -88,10 +88,16 @@ public class NioInputStream extends InputStream implements SocketHandler
 			ByteBuffer buf;
 			for (;;)
 			{
+                if (bufs == null)
+                    return null;
+                
 				buf = bufs.poll(timeout, TimeUnit.MILLISECONDS);
 				
 				if (bufs == null)
 					return null;
+				
+				if (buf == null)
+				    return null;
 				
 				bufs.push(buf);
 				if (!buf.hasRemaining())

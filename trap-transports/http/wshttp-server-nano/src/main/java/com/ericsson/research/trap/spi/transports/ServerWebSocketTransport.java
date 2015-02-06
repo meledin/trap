@@ -189,6 +189,7 @@ public class ServerWebSocketTransport extends AbstractListenerTransport implemen
 		WSNioEndpoint ws = new WSNioEndpoint(socket, new WSPrefetcher(new WSSecurityContext(server.server.getSslc())), null);
 		WebSocketTransport transport = new WebSocketTransport(ws);
 		this.listenerDelegate.ttsIncomingConnection(transport, this, this.listenerContext);
+        request.upgrade(ws);
     }
 
 }

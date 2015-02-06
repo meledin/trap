@@ -43,7 +43,7 @@ public class Response
 	 * Use chunkedTransfer
 	 */
 	private boolean	            chunkedTransfer;
-
+	
 	/**
 	 * Uninitialised response
 	 */

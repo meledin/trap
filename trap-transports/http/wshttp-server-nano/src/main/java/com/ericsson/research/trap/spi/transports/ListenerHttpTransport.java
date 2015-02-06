@@ -131,6 +131,11 @@ public class ListenerHttpTransport extends AbstractListenerTransport implements 
 						handler.handle(request, response);
 						return;
 					}
+					else
+					{
+					    response.setStatus(Status.NOT_FOUND);
+					    return;
+					}
 				}
 				
 				CORSUtil.setCors(request, response);
@@ -165,8 +170,7 @@ public class ListenerHttpTransport extends AbstractListenerTransport implements 
 	{
 		try
 		{
-			this.logger.trace("Got new HTTP exchange request on root...");
-			System.out.println(request.getMethod() + " " + request.getUri());
+			this.logger.trace("Incoming request on root: {} {}", request.getMethod(), request.getUri());
 			String path = request.getUri();
 			String base = path.split("/")[1];
 
