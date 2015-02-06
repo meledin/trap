@@ -1,5 +1,7 @@
+package com.ericsson.research.trap.spi.nhttp;
 
-package com.ericsson.research.trap.nio;
+import com.ericsson.research.trap.nhttpd.IHTTPSession;
+import com.ericsson.research.trap.nhttpd.Response;
 
 /*
  * ##_BEGIN_LICENSE_##
@@ -34,32 +36,21 @@ package com.ericsson.research.trap.nio;
  * ##_END_LICENSE_##
  */
 
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-
-public interface ServerSocket
+public class CORSUtil
 {
-    public interface ServerSocketHandler
+    public static void setCors(IHTTPSession session, Response r)
     {
+        String origin = session.getHeaders().get("Origin");
         
-        public void accept(Socket sock, ServerSocket ss);
+        if (origin == null)
+            origin = "null";
         
-        public void error(Throwable exc, ServerSocket ss);
-        
+        r.addHeader("Allow", "GET,PUT,POST,DELETE,OPTIONS");
+        r.addHeader("Access-Control-Allow-Origin", origin);
+        r.addHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+        r.addHeader("Access-Control-Allow-Headers", "Content-Type");
+        r.addHeader("Access-Control-Request-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+        r.addHeader("Access-Control-Request-Headers", "Content-Type");
+        r.addHeader("Access-Control-Max-Age", "3600");
     }
-    
-    public InetSocketAddress getInetAddress() throws IOException;
-    
-    public void listen(int port) throws IOException;
-    
-    public void listen(InetAddress host, int port) throws IOException;
-    
-    public void listen(String addr, int port) throws IOException;
-    
-    public void listen(InetSocketAddress address) throws IOException;
-
-	public void close();
-
-    public boolean isClosed();
 }

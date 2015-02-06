@@ -149,4 +149,15 @@ public class SocketWrapper implements Socket, ManagedSocketClient
 		handler.error(e, this);
     }
 
+    @Override
+    public void setSoTimeout(int socketReadTimeout)
+    {
+    }
+
+    @Override
+    public SocketHandler getHandler()
+    {
+        return handler;
+    }
+
 }

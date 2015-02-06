@@ -326,4 +326,11 @@ public class Nio2SSLSocket extends Nio2SocketBase
 		}
 	}
 
+    @Override
+    public void setSoTimeout(int socketReadTimeout)
+    {
+        // TODO Auto-generated method stub
+        
+    }
+
 }
