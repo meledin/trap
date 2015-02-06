@@ -240,10 +240,4 @@ public class Nio2Socket extends Nio2SocketBase
 		}
 	}
 
-    @Override
-    public void setSoTimeout(int socketReadTimeout)
-    {
-        //TODO: Fix this
-    }
-
 }

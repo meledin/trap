@@ -69,7 +69,7 @@ public class NioOutputStream extends OutputStream implements SocketHandler
     @Override
     public void write(int b) throws IOException
     {
-        ByteBuffer buffer = ByteBuffer.allocate(Integer.BYTES).putInt(b);
+        ByteBuffer buffer = ByteBuffer.allocate(4).putInt(b);
         buffer.flip();
         bufs.add(buffer);
         sent(sock);

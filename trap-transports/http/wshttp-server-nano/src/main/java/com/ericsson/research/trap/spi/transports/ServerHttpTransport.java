@@ -35,9 +35,7 @@ package com.ericsson.research.trap.spi.transports;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLDecoder;
@@ -60,9 +58,10 @@ import com.ericsson.research.trap.spi.TrapTransportException;
 import com.ericsson.research.trap.spi.TrapTransportProtocol;
 import com.ericsson.research.trap.spi.TrapTransportState;
 import com.ericsson.research.trap.spi.nhttp.CORSUtil;
+import com.ericsson.research.trap.spi.nhttp.FullRequestHandler;
 import com.ericsson.research.trap.utils.ThreadPool;
 
-public class ServerHttpTransport extends AbstractTransport implements Runnable
+public class ServerHttpTransport extends AbstractTransport implements Runnable, FullRequestHandler
 {
     
     long                                expirationDelay       = 28000;                                 // Almost 30 seconds
@@ -206,7 +205,7 @@ public class ServerHttpTransport extends AbstractTransport implements Runnable
         return authed;
     }
     
-    public void handle(IHTTPSession request, Response response) throws IOException
+    public void handle(IHTTPSession request, Response response)
     {
         try
         {

@@ -426,7 +426,6 @@ public class NanoHTTPD implements ServerSocketHandler
     public void accept(Socket sock, ServerSocket ss)
     {
         registerConnection(sock);
-        sock.setSoTimeout(SOCKET_READ_TIMEOUT);
         TempFileManager tempFileManager = tempFileManagerFactory.create();
         try
         {

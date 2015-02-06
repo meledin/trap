@@ -17,7 +17,7 @@ public class DefaultTempFileManager implements TempFileManager {
     private final List<TempFile> tempFiles;
 
     public DefaultTempFileManager() {
-        tmpdir = System.getProperty("java.io.tmpdir");
+		tmpdir = System.getProperty("java.io.tmpdir");
         tempFiles = new ArrayList<TempFile>();
     }
 
